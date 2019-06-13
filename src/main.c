@@ -111,12 +111,17 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM4_Init();
   MX_USART2_UART_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
 
   int capture = 0, capture_prev = 0, encoder = 0;
 
-  uint8_t str[] = "USART Transmit\r\n";
+  //uint8_t str[] = "USART Transmit\r\n";
+  //char sendStr[16];
+
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
 
   /* USER CODE END 2 */
 
@@ -127,8 +132,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    HAL_UART_Transmit(&huart2, str, 16, 0xFFF);
+    //HAL_UART_Transmit(&huart2, str, 16, 0xFFF);
 
+    /*     
+    encoder code 
     capture = TIM4->CNT;
     encoder += capture - capture_prev;
 
@@ -137,11 +144,17 @@ int main(void)
       HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     }
 
+    //sprintf(sendStr, "Encoder: %d \r\n", encoder);
 
-    HAL_UART_Transmit(&huart2, &encoder, 16, 0xFFF);
+    //HAL_UART_Transmit(&huart2, sendStr, 16, 0xFFF);
 
     capture_prev = capture;
     HAL_Delay(100);
+    */
+
+    
+
+
   }
   /* USER CODE END 3 */
 }

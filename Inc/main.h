@@ -80,6 +80,14 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED_Pin GPIO_PIN_13
 #define LED_GPIO_Port GPIOC
+#define DIRL_Pin GPIO_PIN_12
+#define DIRL_GPIO_Port GPIOB
+#define PWML_Pin GPIO_PIN_13
+#define PWML_GPIO_Port GPIOB
+#define PWMR_Pin GPIO_PIN_14
+#define PWMR_GPIO_Port GPIOB
+#define DIRR_Pin GPIO_PIN_15
+#define DIRR_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
