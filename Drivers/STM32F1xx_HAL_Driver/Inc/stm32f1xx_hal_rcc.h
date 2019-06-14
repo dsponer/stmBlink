@@ -130,7 +130,7 @@ typedef struct
   * @{
   */
 #define RCC_HSE_OFF                      0x00000000U                                /*!< HSE clock deactivation */
-#define RCC_HSE_ON                       RCC_CR_HSEON                               /*!< HSE clock activation */
+#define  RCC_HSE_ON                       RCC_CR_HSEON                               /*!< HSE clock activation */
 #define RCC_HSE_BYPASS                   ((uint32_t)(RCC_CR_HSEBYP | RCC_CR_HSEON)) /*!< External clock source for HSE clock */
 /**
   * @}

@@ -4,6 +4,8 @@
         "PLATFORMIO_CALLER": "vscode"
     },
     "files.associations": {
-        "tim.h": "c"
+        "tim.h": "c",
+        "algorithm": "c",
+        "utility": "c"
     }
 }

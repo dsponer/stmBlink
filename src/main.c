@@ -44,6 +44,7 @@
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
+#include "medianFilter.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -120,7 +121,6 @@ int main(void)
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
 
   char str[9] = {0};
-  float i = 0;
 
   /* USER CODE END 2 */
 
@@ -160,11 +160,9 @@ int main(void)
       HAL_Delay(50);
     }*/
 
-    HAL_ADC_Start(&hadc1);
-    HAL_ADC_PollForConversion(&hadc1, 100);
-    i = ((float)HAL_ADC_GetValue(&hadc1))*3.3/4096;
-    HAL_ADC_Stop(&hadc1);
-    sprintf(str, "%f\r\n",i);
+    float i = readMedian(hadc1,15);
+
+    sprintf(str, "%f\r\n", i);
     HAL_UART_Transmit(&huart2, str, 16, 0xFFF);
     HAL_Delay(100);
 
