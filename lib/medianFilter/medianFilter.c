@@ -1,8 +1,10 @@
 #include "medianFilter.h"
 #include "adc.h"
+#include "stdio.h"
+#include "stdlib.h"
 
 int compare(const void *a, const void *b){
-    return (*(float*)a - *(float*)b);
+    return (*(float*)b - *(float*)a);
 }
 
 float readMedian(ADC_HandleTypeDef pin, int samples){

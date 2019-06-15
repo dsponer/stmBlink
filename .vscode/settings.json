@@ -6,6 +6,12 @@
     "files.associations": {
         "tim.h": "c",
         "algorithm": "c",
-        "utility": "c"
+        "utility": "c",
+        "cmsis_os.h": "c",
+        "usb_device.h": "c",
+        "gpio.h": "c",
+        "iostream": "c",
+        "task.h": "c",
+        "freertos.h": "c"
     }
 }

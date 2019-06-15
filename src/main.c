@@ -49,7 +49,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "medianFilter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -101,7 +101,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+  
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -122,7 +122,7 @@ int main(void)
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
 
-  char str[9] = {0};
+  uint8_t str[16] = {0};
 
   /* USER CODE END 2 */
 
@@ -170,7 +170,7 @@ int main(void)
       HAL_Delay(50);
     }*/
 
-    float i = readMedian(hadc1,15);
+    float i = readMedian(hadc1, 15);
 
     sprintf(str, "%f\r\n", i);
     HAL_UART_Transmit(&huart2, str, 16, 0xFFF);

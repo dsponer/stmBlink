@@ -79,13 +79,15 @@
 
 /* USER CODE END Variables */
 osThreadId testOneHandle;
+osThreadId testTwoHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
    
 /* USER CODE END FunctionPrototypes */
 
-void StartDefaultTask(void const * argument);
+void StartTask01(void const * argument);
+void StartTask02(void const * argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -114,8 +116,12 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of testOne */
-  osThreadDef(testOne, StartDefaultTask, osPriorityNormal, 0, 128);
+  osThreadDef(testOne, StartTask01, osPriorityNormal, 0, 128);
   testOneHandle = osThreadCreate(osThread(testOne), NULL);
+
+  /* definition and creation of testTwo */
+  osThreadDef(testTwo, StartTask02, osPriorityNormal, 0, 128);
+  testTwoHandle = osThreadCreate(osThread(testTwo), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -126,25 +132,43 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 }
 
-/* USER CODE BEGIN Header_StartDefaultTask */
+/* USER CODE BEGIN Header_StartTask01 */
 /**
   * @brief  Function implementing the testOne thread.
   * @param  argument: Not used 
   * @retval None
   */
-/* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void const * argument)
+/* USER CODE END Header_StartTask01 */
+void StartTask01(void const * argument)
 {
   /* init code for USB_DEVICE */
   MX_USB_DEVICE_Init();
 
-  /* USER CODE BEGIN StartDefaultTask */
+  /* USER CODE BEGIN StartTask01 */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END StartDefaultTask */
+  /* USER CODE END StartTask01 */
+}
+
+/* USER CODE BEGIN Header_StartTask02 */
+/**
+* @brief Function implementing the testTwo thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask02 */
+void StartTask02(void const * argument)
+{
+  /* USER CODE BEGIN StartTask02 */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartTask02 */
 }
 
 /* Private application code --------------------------------------------------*/
